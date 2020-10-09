@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Bhaskara</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<style type="text/css">
+		.panel {
+			margin-top:10px;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			var results = $('#resultados');
+			
+			$('body').on('submit','#form',function(){
+			
+				var a = parseInt(this.a.value);
+				var b = parseInt(this.b.value);
+				var c = parseInt(this.c.value);
+				
+				var delta = Math.sqrt((b*b) - (4*a*c));
+			
+				var x1 = (- b - delta )/2*a;
+				var x2 = (- b + delta )/2*a;
+			
+				var text = "<strong>y = "+a +"x² + "+b+"x + "+c+"</strong> -> x1 = "+x1+" x2 = "+x2;
+			
+				$('<li>',{'class':'list-group-item','html':text}).prependTo(results);
+			
+				return false;
+			});
+		});		
+	</script>
+</head>
+<body>
+	<div class="page-header">
+		<h1 class='text-center'>Bhaskara</h1>
+	</div>
+	<div class="container">
+		<div class="jumbotron">
+			<form action="#" class="form-inline" id='form'>
+				<div class="form-group"><input name='a' placeholder='a' class='form-control' id='a' type="number" value='0' /></div>
+				<div class="form-group"><input name='b'placeholder='b'class='form-control' id='b' type="number" value='0'/></div>
+				<div class="form-group"><input name='c' placeholder='c' class='form-control' id='c' type="number" value='0'/></div>
+				<input class='btn btn-danger' type="submit" value="Calcular"/>
+			</form>
+			<div class="panel panel-primary">
+				<div class="panel-heading ">Resultados</div>
+				<ul class="list-group" id='resultados'></ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
